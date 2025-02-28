@@ -1,0 +1,70 @@
+.row {
+    height: 70px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+.row:hover {
+    box-shadow: 0 0 20px 0px #00000026;
+}
+
+.cell {
+    padding: 15px;
+}
+
+.cell_name {
+    font-weight: 500;
+    font-size: 13px;
+    color: #474747;
+    border-radius: 3px 0 0 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cell_name::before {
+    content: '';
+    display: block;
+    width: 4px;
+    background-color: #c2c2ff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.cell_type {
+    font-size: 12px;
+    color: #5c5c5c;
+}
+
+.cell_status {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+.cell_status::first-letter {
+    text-transform: uppercase;
+}
+
+.cell_status__draft {
+    color: #5c5c5c;
+}
+
+.cell_status__online {
+    color: #1bda9d;
+}
+
+.cell_status__paused {
+    color: #ff8346;
+}
+
+.cell_status__stopped {
+    color: #fe4848;
+}
+
+.cell_site {
+    color: #5c5c5c;
+    font-size: 12px;
+}

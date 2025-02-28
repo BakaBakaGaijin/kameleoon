@@ -4,7 +4,7 @@ enum Type {
     MVT = 'MVT',
 }
 
-enum Status {
+export enum Status {
     DRAFT = 'DRAFT',
     ONLINE = 'ONLINE',
     PAUSED = 'PAUSED',

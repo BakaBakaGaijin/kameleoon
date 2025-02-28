@@ -1,0 +1,33 @@
+.table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table_column-title {
+    text-align: left;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 11px;
+    color: #999999;
+}
+
+.table_column-title_name {
+    width: 41%;
+}
+
+.table_column-title_type {
+    width: 11%;
+}
+
+.table_column-title_status {
+    width: 7%;
+}
+
+.table_column-title_action {
+    width: 95px;
+}
+
+.table_icon {
+    margin-left: 8px;
+    color: #999999;
+}

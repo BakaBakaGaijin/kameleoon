@@ -8,8 +8,13 @@ h2 {
     margin: 0;
 }
 
-ul {
+ul,
+td {
     padding: 0;
+}
+
+table {
+    border-spacing: 0 2.5px;
 }
 
 .app {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { testApi } from '../../../entities/test';
 import { Site, Test } from '../../../entities/test/model/types';
+import { TestTable } from '../../../widgets/test-table';
 
 export const Home = () => {
     const [loading, setLoading] = useState(true);
@@ -32,14 +34,8 @@ export const Home = () => {
 
     return (
         <>
-            <h1>Dashboard</h1>
-            <ul>
-                {tests.map((test) => (
-                    <div key={test.id}>
-                        {test.name} {sites.find(({ id }) => id === test.siteId)?.url}
-                    </div>
-                ))}
-            </ul>
+            <h1>search</h1>
+            <TestTable tests={tests} sites={sites} />
         </>
     );
 };
