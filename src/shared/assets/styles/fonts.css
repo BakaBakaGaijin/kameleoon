@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Roboto;
+    src: url('../fonts/roboto.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Nunito;
+    src: url('../fonts/nunito.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('../fonts/montserrat.ttf');
+    font-weight: normal;
+}
+
+* {
+    font-family: Roboto;
+    text-wrap: pretty;
+}
