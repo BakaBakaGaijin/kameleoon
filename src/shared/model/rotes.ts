@@ -3,3 +3,9 @@ export const ROUTES = {
     RESULTS: '/results',
     FINALIZE: '/finalize',
 };
+
+export const PAGE_TITLES = {
+    HOME: 'Dashboard',
+    RESULTS: 'Results',
+    FINALIZE: 'Finalize',
+};
