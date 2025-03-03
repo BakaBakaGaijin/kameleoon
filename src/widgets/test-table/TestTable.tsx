@@ -16,13 +16,20 @@ export const TestTable = ({ tests, sites }: TTestTableProps) => {
         return <EmptyTableState />;
     }
 
-    const handleSortByName = () => {
-        const name = searchParams.get('name');
-        const nameValue = !name || name === 'desc' ? 'asc' : 'desc';
+    const handlePlainStringSort = (propName: string) => () => {
+        const q = searchParams.get('q');
+        const propValue = searchParams.get(propName);
+        const newPropValue = !propValue || propValue === 'desc' ? 'asc' : 'desc';
 
-        searchParams.set('name', nameValue);
+        const urlSearchParams = new URLSearchParams();
 
-        setSearchParams(searchParams);
+        if (q) {
+            urlSearchParams.set('q', q);
+        }
+
+        urlSearchParams.set(propName, newPropValue);
+
+        setSearchParams(urlSearchParams);
     };
 
     return (
@@ -31,11 +38,14 @@ export const TestTable = ({ tests, sites }: TTestTableProps) => {
                 <tr>
                     <th
                         className="table_column-title table_column-title_name"
-                        onClick={handleSortByName}
+                        onClick={handlePlainStringSort('name')}
                     >
                         NAME
                     </th>
-                    <th className="table_column-title table_column-title_type">
+                    <th
+                        className="table_column-title table_column-title_type"
+                        onClick={handlePlainStringSort('type')}
+                    >
                         Type
                         <svg
                             className="table_icon"
