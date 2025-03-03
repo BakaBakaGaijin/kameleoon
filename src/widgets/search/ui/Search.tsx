@@ -1,12 +1,25 @@
 import { ChangeEvent } from 'react';
+import { useSearchParams } from 'react-router';
+
 import './Search.css';
 
 type TSearchProps = {
-    onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
     amount: number;
 };
 
-export const Search = ({ amount, onSearch }: TSearchProps) => {
+export const Search = ({ amount }: TSearchProps) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const value = searchParams.get('q') || '';
+
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        const searchStr = e.target.value.toLowerCase();
+
+        setSearchParams({ q: searchStr });
+
+        if (!searchStr) setSearchParams({});
+    };
+
     return (
         <div className="search">
             <div className="search__icon">
@@ -28,7 +41,8 @@ export const Search = ({ amount, onSearch }: TSearchProps) => {
                 className="search__input"
                 type="text"
                 placeholder="What test are you looking for?"
-                onChange={onSearch}
+                onChange={handleSearch}
+                value={value}
             />
             <div className="search__amount">{`${amount} ${amount === 1 ? 'test' : 'tests'}`}</div>
         </div>

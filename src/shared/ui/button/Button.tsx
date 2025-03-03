@@ -6,8 +6,13 @@ import './Button.css';
 type TButtonProps = {
     children: ReactNode;
     dark?: boolean;
+    onClick?: () => void;
 };
 
-export const Button = ({ children, dark }: TButtonProps) => {
-    return <button className={cn('button', { dark })}>{children}</button>;
+export const Button = ({ children, dark, onClick }: TButtonProps) => {
+    return (
+        <button className={cn('button', { dark })} onClick={onClick}>
+            {children}
+        </button>
+    );
 };

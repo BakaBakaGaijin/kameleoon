@@ -1,10 +1,10 @@
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
 import { testApi } from '../../../entities/test';
 import { Site, Test } from '../../../entities/test/model/types';
 import { TestTable } from '../../../widgets/test-table';
 import { Search } from '../../../widgets/search';
-import { debounce } from '../../../shared/lib/debounce';
 import './Home.css';
 
 export const Home = () => {
@@ -13,6 +13,7 @@ export const Home = () => {
     const [sites, setSites] = useState<Site[]>([]);
     const [tests, setTests] = useState<Test[]>([]);
     const [filteredTests, setFilteredTests] = useState<Test[]>([]);
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
         Promise.all([testApi.getTests(), testApi.getSites()])
@@ -29,6 +30,18 @@ export const Home = () => {
             });
     }, []);
 
+    useEffect(() => {
+        const q = searchParams.get('q');
+
+        if (q) {
+            const filteredTest = tests.filter((test) => test.name.toLowerCase().includes(q));
+
+            setFilteredTests(filteredTest);
+        } else {
+            setFilteredTests(tests);
+        }
+    }, [searchParams, tests]);
+
     if (loading) {
         return 'Loading...';
     }
@@ -37,17 +50,9 @@ export const Home = () => {
         return error;
     }
 
-    const handleSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
-        const searchStr = e.target.value.toLowerCase();
-
-        const filteredTest = tests.filter((test) => test.name.toLowerCase().includes(searchStr));
-
-        setFilteredTests(filteredTest);
-    }, 1000);
-
     return (
         <div className="home-page">
-            <Search amount={filteredTests.length} onSearch={handleSearch} />
+            <Search amount={filteredTests.length} />
             <TestTable tests={filteredTests} sites={sites} />
         </div>
     );

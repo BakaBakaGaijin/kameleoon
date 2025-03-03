@@ -1,5 +1,6 @@
 import { Site, Test } from '../../entities/test/model/types';
 import { TestTableRow } from './ui/test-table-row/TestTableRow';
+import { EmptyTableState } from './ui/empty-table-state/EmptyTableState';
 import './TestTable.css';
 
 type TTestTableProps = {
@@ -8,6 +9,10 @@ type TTestTableProps = {
 };
 
 export const TestTable = ({ tests, sites }: TTestTableProps) => {
+    if (!tests.length) {
+        return <EmptyTableState />;
+    }
+
     return (
         <table className="table">
             <thead>
