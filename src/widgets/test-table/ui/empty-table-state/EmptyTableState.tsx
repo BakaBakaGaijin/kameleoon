@@ -4,11 +4,14 @@ import { Button } from '../../../../shared/ui/button';
 import './EmptyTableState.css';
 
 export const EmptyTableState = () => {
-    const [, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleReset = () => {
-        setSearchParams({});
+        searchParams.delete('q');
+
+        setSearchParams(searchParams);
     };
+
     return (
         <div className="empty-table-state">
             <div className="empty-table-state_content">

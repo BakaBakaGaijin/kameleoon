@@ -2,6 +2,7 @@ import { Site, Test } from '../../entities/test/model/types';
 import { TestTableRow } from './ui/test-table-row/TestTableRow';
 import { EmptyTableState } from './ui/empty-table-state/EmptyTableState';
 import './TestTable.css';
+import { useSearchParams } from 'react-router';
 
 type TTestTableProps = {
     tests: Test[];
@@ -9,15 +10,31 @@ type TTestTableProps = {
 };
 
 export const TestTable = ({ tests, sites }: TTestTableProps) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
     if (!tests.length) {
         return <EmptyTableState />;
     }
+
+    const handleSortByName = () => {
+        const name = searchParams.get('name');
+        const nameValue = !name || name === 'desc' ? 'asc' : 'desc';
+
+        searchParams.set('name', nameValue);
+
+        setSearchParams(searchParams);
+    };
 
     return (
         <table className="table">
             <thead>
                 <tr>
-                    <th className="table_column-title table_column-title_name">NAME</th>
+                    <th
+                        className="table_column-title table_column-title_name"
+                        onClick={handleSortByName}
+                    >
+                        NAME
+                    </th>
                     <th className="table_column-title table_column-title_type">
                         Type
                         <svg

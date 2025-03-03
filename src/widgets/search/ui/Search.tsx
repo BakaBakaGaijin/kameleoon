@@ -15,9 +15,13 @@ export const Search = ({ amount }: TSearchProps) => {
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         const searchStr = e.target.value.toLowerCase();
 
-        setSearchParams({ q: searchStr });
+        searchParams.set('q', searchStr);
 
-        if (!searchStr) setSearchParams({});
+        if (!searchStr) {
+            searchParams.delete('q');
+        }
+
+        setSearchParams(searchParams);
     };
 
     return (

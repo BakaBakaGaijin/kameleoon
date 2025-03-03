@@ -5,6 +5,8 @@ import { testApi } from '../../../entities/test';
 import { Site, Test } from '../../../entities/test/model/types';
 import { TestTable } from '../../../widgets/test-table';
 import { Search } from '../../../widgets/search';
+import { descSort } from '../../../shared/lib/descSort';
+import { ascSort } from '../../../shared/lib/ascSort';
 import './Home.css';
 
 export const Home = () => {
@@ -14,6 +16,9 @@ export const Home = () => {
     const [tests, setTests] = useState<Test[]>([]);
     const [filteredTests, setFilteredTests] = useState<Test[]>([]);
     const [searchParams] = useSearchParams();
+
+    const q = searchParams.get('q');
+    const name = searchParams.get('name');
 
     useEffect(() => {
         Promise.all([testApi.getTests(), testApi.getSites()])
@@ -31,16 +36,20 @@ export const Home = () => {
     }, []);
 
     useEffect(() => {
-        const q = searchParams.get('q');
+        let newFormattedTests = [...tests];
 
         if (q) {
-            const filteredTest = tests.filter((test) => test.name.toLowerCase().includes(q));
-
-            setFilteredTests(filteredTest);
-        } else {
-            setFilteredTests(tests);
+            newFormattedTests = newFormattedTests.filter((test) =>
+                test.name.toLowerCase().includes(q)
+            );
         }
-    }, [searchParams, tests]);
+
+        if (name) {
+            newFormattedTests.sort(name === 'desc' ? descSort : ascSort);
+        }
+
+        setFilteredTests(newFormattedTests);
+    }, [name, q, tests]);
 
     if (loading) {
         return 'Loading...';
