@@ -19,6 +19,30 @@
     width: 11%;
 }
 
+.asc,
+.desc {
+    position: relative;
+    padding-right: 15px;
+}
+
+.asc::before,
+.desc::before {
+    content: '';
+    background: url('../../shared/assets/icons/ChevronDown.svg');
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 4px;
+    rotate: 180deg;
+    top: calc(50% - 2px);
+    right: 0;
+    transform-origin: 50% 50%;
+}
+
+.desc::before {
+    rotate: 0deg;
+}
+
 .table_column-title_status {
     width: 7%;
 }

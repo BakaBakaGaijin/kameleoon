@@ -5,9 +5,9 @@ import { testApi } from '../../../entities/test';
 import { MappedTest } from '../../../entities/test/model/types';
 import { TestTable } from '../../../widgets/test-table';
 import { Search } from '../../../widgets/search';
-import { getDescSort } from '../../../shared/lib/descSort';
-import { getAscSort } from '../../../shared/lib/ascSort';
-import { getFormattedUrl } from '../../../shared/lib/getFormattedUrl';
+import { getDescSort } from '../../../entities/test/lib/descSort';
+import { getAscSort } from '../../../entities/test/lib/ascSort';
+import { getFormattedUrl } from '../../../entities/test/lib/getFormattedUrl';
 import './Home.css';
 
 export const Home = () => {
@@ -21,6 +21,7 @@ export const Home = () => {
     const name = searchParams.get('name');
     const type = searchParams.get('type');
     const site = searchParams.get('site');
+    const status = searchParams.get('status');
 
     useEffect(() => {
         Promise.all([testApi.getTests(), testApi.getSites()])
@@ -62,8 +63,14 @@ export const Home = () => {
             newFormattedTests.sort(site === 'desc' ? getDescSort('site') : getAscSort('site'));
         }
 
+        if (status) {
+            newFormattedTests.sort(
+                status === 'desc' ? getDescSort('status') : getAscSort('status')
+            );
+        }
+
         setHandledTests(newFormattedTests);
-    }, [name, q, site, tests, type]);
+    }, [name, q, site, status, tests, type]);
 
     if (loading) {
         return 'Loading...';

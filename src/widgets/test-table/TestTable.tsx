@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router';
 
+import { Button } from '../../shared/ui/button';
 import { MappedTest } from '../../entities/test/model/types';
 import { TestTableRow } from './ui/test-table-row/TestTableRow';
 import { EmptyTableState } from './ui/empty-table-state/EmptyTableState';
@@ -16,7 +17,7 @@ export const TestTable = ({ tests }: TTestTableProps) => {
         return <EmptyTableState />;
     }
 
-    const handlePlainStringSort = (propName: string) => () => {
+    const getHandleSort = (propName: string) => () => {
         const q = searchParams.get('q');
         const propValue = searchParams.get(propName);
         const newPropValue = !propValue || propValue === 'desc' ? 'asc' : 'desc';
@@ -32,38 +33,59 @@ export const TestTable = ({ tests }: TTestTableProps) => {
         setSearchParams(urlSearchParams);
     };
 
+    const getSortClass = (propName: string) => {
+        const propValue = searchParams.get(propName);
+
+        switch (propValue) {
+            case 'asc':
+                return 'asc';
+            case 'desc':
+                return 'desc';
+
+            default:
+                return undefined;
+        }
+    };
+
     return (
         <table className="table">
             <thead>
                 <tr>
-                    <th
-                        className="table_column-title table_column-title_name"
-                        onClick={handlePlainStringSort('name')}
-                    >
-                        NAME
-                    </th>
-                    <th
-                        className="table_column-title table_column-title_type"
-                        onClick={handlePlainStringSort('type')}
-                    >
-                        Type
-                        <svg
-                            className="table_icon"
-                            width="7"
-                            height="4"
-                            viewBox="0 0 7 4"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                    <th className="table_column-title table_column-title_name">
+                        <Button
+                            variant="text"
+                            onClick={getHandleSort('name')}
+                            className={getSortClass('name')}
                         >
-                            <path
-                                d="M-1.7637e-07 3.50001L3.13529 0.364715L3.5 7.09765e-06L3.86471 0.364715L7 3.50001L6.63529 3.86472L3.5 0.729424L0.364708 3.86472L-1.7637e-07 3.50001Z"
-                                fill="currentColor"
-                            />
-                        </svg>
+                            NAME
+                        </Button>
                     </th>
-                    <th className="table_column-title table_column-title_status">Status</th>
-                    <th className="table_column-title" onClick={handlePlainStringSort('site')}>
-                        Site
+                    <th className="table_column-title table_column-title_type">
+                        <Button
+                            variant="text"
+                            onClick={getHandleSort('type')}
+                            className={getSortClass('type')}
+                        >
+                            TYPE
+                        </Button>
+                    </th>
+                    <th className="table_column-title table_column-title_status">
+                        <Button
+                            variant="text"
+                            onClick={getHandleSort('status')}
+                            className={getSortClass('status')}
+                        >
+                            STATUS
+                        </Button>
+                    </th>
+                    <th className="table_column-title">
+                        <Button
+                            variant="text"
+                            onClick={getHandleSort('site')}
+                            className={getSortClass('site')}
+                        >
+                            SITE
+                        </Button>
                     </th>
                     <th className="table_column-title table_column-title_action" />
                 </tr>
