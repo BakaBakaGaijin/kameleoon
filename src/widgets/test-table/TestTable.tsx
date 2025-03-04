@@ -1,15 +1,15 @@
-import { Site, Test } from '../../entities/test/model/types';
+import { useSearchParams } from 'react-router';
+
+import { MappedTest } from '../../entities/test/model/types';
 import { TestTableRow } from './ui/test-table-row/TestTableRow';
 import { EmptyTableState } from './ui/empty-table-state/EmptyTableState';
 import './TestTable.css';
-import { useSearchParams } from 'react-router';
 
 type TTestTableProps = {
-    tests: Test[];
-    sites: Site[];
+    tests: MappedTest[];
 };
 
-export const TestTable = ({ tests, sites }: TTestTableProps) => {
+export const TestTable = ({ tests }: TTestTableProps) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     if (!tests.length) {
@@ -62,17 +62,15 @@ export const TestTable = ({ tests, sites }: TTestTableProps) => {
                         </svg>
                     </th>
                     <th className="table_column-title table_column-title_status">Status</th>
-                    <th className="table_column-title">Site</th>
+                    <th className="table_column-title" onClick={handlePlainStringSort('site')}>
+                        Site
+                    </th>
                     <th className="table_column-title table_column-title_action" />
                 </tr>
             </thead>
             <tbody>
                 {tests.map((test) => (
-                    <TestTableRow
-                        key={test.id}
-                        test={test}
-                        site={sites.find(({ id }) => id === test.siteId)!}
-                    />
+                    <TestTableRow key={test.id} test={test} />
                 ))}
             </tbody>
         </table>

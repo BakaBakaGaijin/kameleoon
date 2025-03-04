@@ -1,15 +1,7 @@
-import { Test } from '../../entities/test/model/types';
+import { MappedTest } from '../../entities/test/model/types';
 
-export const getDescSort = (sortBy: 'name' | 'type') => {
-    return (testA: Test, testB: Test) => {
-        if (testA[sortBy] > testB[sortBy]) {
-            return -1;
-        }
-
-        if (testA[sortBy] < testB[sortBy]) {
-            return 1;
-        }
-
-        return 0;
+export const getDescSort = (sortBy: 'name' | 'type' | 'site') => {
+    return (testA: MappedTest, testB: MappedTest) => {
+        return testB[sortBy].toLowerCase().localeCompare(testA[sortBy]);
     };
 };
