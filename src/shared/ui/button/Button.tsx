@@ -2,18 +2,30 @@ import { ReactNode } from 'react';
 import cn from 'classnames';
 
 import './Button.css';
+import { Link } from 'react-router';
 
 type TButtonProps = {
     children: ReactNode;
     dark?: boolean;
-    variant?: 'text';
+    variant?: 'text' | 'back';
+    href?: string;
     className?: string;
     onClick?: () => void;
 };
 
-export const Button = ({ children, dark, variant, className, onClick }: TButtonProps) => {
+export const Button = ({ children, dark, variant, href, className, onClick }: TButtonProps) => {
+    const classes = cn('button', className, { dark, [variant!]: variant });
+
+    if (href) {
+        return (
+            <Link className={classes} to={href}>
+                {children}
+            </Link>
+        );
+    }
+
     return (
-        <button className={cn('button', className, { dark, text: variant })} onClick={onClick}>
+        <button className={classes} onClick={onClick}>
             {children}
         </button>
     );

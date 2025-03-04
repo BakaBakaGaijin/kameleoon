@@ -1,28 +1,38 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
-import { PAGE_TITLES, ROUTES } from '../../shared/model/rotes';
+import { PAGE_SUBTITLES, PAGE_TITLES, ROUTES } from '../../shared/model/rotes';
 import './Header.css';
 
-const getPageTitle = (pathname: string) => {
+const getPageTitles = (pathname: string) => {
+    let title = PAGE_TITLES.HOME;
+    let subtitle = PAGE_SUBTITLES.HOME;
+
     if (pathname.includes(ROUTES.RESULTS)) {
-        return PAGE_TITLES.RESULTS;
+        title = PAGE_TITLES.RESULTS;
+        subtitle = PAGE_SUBTITLES.RESULTS;
     }
 
     if (pathname.includes(ROUTES.FINALIZE)) {
-        return PAGE_TITLES.FINALIZE;
+        title = PAGE_TITLES.FINALIZE;
+        subtitle = PAGE_SUBTITLES.RESULTS;
     }
 
-    return PAGE_TITLES.HOME;
+    return { title, subtitle };
 };
 
 export const Header = () => {
     const { pathname } = useLocation();
-    const title = getPageTitle(pathname);
+    const { title, subtitle } = getPageTitles(pathname);
 
     useEffect(() => {
         document.title = title;
     }, [pathname, title]);
 
-    return <h2 className="title">{title}</h2>;
+    return (
+        <header>
+            <h2 className="title">{title}</h2>
+            {subtitle && <h3 className="subtitle">{subtitle}</h3>}
+        </header>
+    );
 };

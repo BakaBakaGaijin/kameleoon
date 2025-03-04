@@ -5,3 +5,11 @@
     font-size: 26px;
     line-height: 40px;
 }
+
+.subtitle {
+    font-family: Montserrat;
+    font-weight: 600;
+    color: #222222;
+    line-height: 17px;
+    margin-top: 4px;
+}

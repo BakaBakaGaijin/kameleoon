@@ -34,7 +34,7 @@ export const testApi = {
             throw new Error('Error in getTests');
         }
     },
-    async getTestById(id: number) {
+    async getTestById(id: string) {
         try {
             const { data } = await api.get<Test>(`${TEST_API_ROUTES.TESTS}/${id}`);
 

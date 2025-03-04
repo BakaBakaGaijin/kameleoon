@@ -1,0 +1,29 @@
+.test-layout {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.test-layout__content {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.back-button {
+    padding-left: 24px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+.back-button::before {
+    content: '';
+    display: block;
+    width: 9px;
+    height: 16px;
+    background: url('../../../../shared/assets/icons/ChevronLeft.svg');
+    position: absolute;
+    left: 0;
+    top: calc(50% - 8px);
+}

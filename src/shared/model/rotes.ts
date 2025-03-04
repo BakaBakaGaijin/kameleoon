@@ -9,3 +9,9 @@ export const PAGE_TITLES = {
     RESULTS: 'Results',
     FINALIZE: 'Finalize',
 };
+
+export const PAGE_SUBTITLES = {
+    HOME: '',
+    RESULTS: 'Order basket redesing',
+    FINALIZE: 'Spring promotion',
+};

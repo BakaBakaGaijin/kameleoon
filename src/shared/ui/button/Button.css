@@ -1,4 +1,7 @@
 .button {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
     width: 95px;
     height: 30px;
     border-radius: 10px;
@@ -28,4 +31,15 @@
     font-size: 11px;
     color: #999999;
     padding: 0;
+}
+
+.back {
+    width: unset;
+    height: unset;
+    display: inline-flex;
+    background-color: unset;
+    color: #222222;
+    font-family: Nunito;
+    font-weight: 700;
+    font-size: 18px;
 }
