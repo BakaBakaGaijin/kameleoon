@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router';
+
 import { Site, Test } from '../../model/types';
 import { testApi } from '../..';
 import { Button } from '../../../../shared/ui/button';
-
 import './TestLayout.css';
 
 export const TestLayout = () => {

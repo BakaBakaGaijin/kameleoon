@@ -26,7 +26,7 @@ export const Search = ({ amount }: TSearchProps) => {
 
     return (
         <div className="search">
-            <div className="search__icon">
+            <label htmlFor="search" className="search__icon">
                 <svg
                     className="search__icon-svg"
                     width="13"
@@ -40,8 +40,9 @@ export const Search = ({ amount }: TSearchProps) => {
                         fill="currentColor"
                     />
                 </svg>
-            </div>
+            </label>
             <input
+                id="search"
                 className="search__input"
                 type="text"
                 placeholder="What test are you looking for?"

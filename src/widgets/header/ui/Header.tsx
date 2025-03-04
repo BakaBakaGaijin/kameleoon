@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
-import { PAGE_SUBTITLES, PAGE_TITLES, ROUTES } from '../../shared/model/rotes';
+import { PAGE_SUBTITLES, PAGE_TITLES, ROUTES } from '../../../shared/model/rotes';
 import './Header.css';
 
 const getPageTitles = (pathname: string) => {

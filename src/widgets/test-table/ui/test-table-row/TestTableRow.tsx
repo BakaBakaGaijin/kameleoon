@@ -3,8 +3,8 @@ import cn from 'classnames';
 import { MappedTest, Status } from '../../../../entities/test/model/types';
 import { TYPE } from '../../../../entities/test/model/consts';
 import { Button } from '../../../../shared/ui/button';
-import './TestTableRow.css';
 import { ROUTES } from '../../../../shared/model/rotes';
+import './TestTableRow.css';
 
 type TTestTableRowProps = {
     test: MappedTest;

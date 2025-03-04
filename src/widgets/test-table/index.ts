@@ -1,1 +1,1 @@
-export { TestTable } from './TestTable';
+export { TestTable } from './ui/test-table/TestTable';

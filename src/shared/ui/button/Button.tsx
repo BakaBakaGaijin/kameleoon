@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router';
 import cn from 'classnames';
 
 import './Button.css';
-import { Link } from 'react-router';
 
 type TButtonProps = {
     children: ReactNode;

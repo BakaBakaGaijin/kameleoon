@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router';
 
-import { Button } from '../../shared/ui/button';
-import { MappedTest } from '../../entities/test/model/types';
-import { TestTableRow } from './ui/test-table-row/TestTableRow';
-import { EmptyTableState } from './ui/empty-table-state/EmptyTableState';
+import { Button } from '../../../../shared/ui/button';
+import { MappedTest } from '../../../../entities/test/model/types';
+import { TestTableRow } from '../test-table-row/TestTableRow';
+import { EmptyTableState } from '../empty-table-state/EmptyTableState';
 import './TestTable.css';
 
 type TTestTableProps = {
